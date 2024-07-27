@@ -9,10 +9,10 @@ def copy_password():
 
 # Generate random character
 def show_random_characters():
-    random_characters = random.choice(string.ascii_letters)
+    scale_value = scale.get()
+    random_characters = ''.join(random.choices(string.ascii_letters, k=scale_value))
     password_show.delete(0, tk.END)
     password_show.insert(0, random_characters)
-
 
 # Create the main window
 root = tk.Tk()
@@ -36,8 +36,9 @@ password_show.pack(side=tk.LEFT, padx=(20,20))
 button_copy = tk.Button(frame, text="Copy", command=show_random_characters)
 button_copy.pack(side=tk.LEFT)
 
+# Slider
+scale = tk.Scale(root, from_=5, to=40, orient="horizontal")
+scale.pack(pady=20)
 
 show_random_characters()
-
-
 root.mainloop()
