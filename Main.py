@@ -1,5 +1,17 @@
+import random
+import string
 import tkinter as tk
 from tkinter import font
+
+def copy_password():
+    password_value = password_show.get()
+    print(f"password is: {password_value}")
+
+# Generate random character
+def show_random_characters():
+    random_characters = random.choice(string.ascii_letters)
+    password_show.delete(0, tk.END)
+    password_show.insert(0, random_characters)
 
 
 # Create the main window
@@ -21,11 +33,11 @@ password_show = tk.Entry(frame)
 password_show.pack(side=tk.LEFT, padx=(20,20))
 
 # Copy button
-button_copy = tk.Button(frame, text="Copy", command="copy_password")
+button_copy = tk.Button(frame, text="Copy", command=show_random_characters)
 button_copy.pack(side=tk.LEFT)
 
 
-
+show_random_characters()
 
 
 root.mainloop()
