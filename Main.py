@@ -13,7 +13,7 @@ def show_random_characters():
     password_show.delete(0, tk.END)
     password_show.insert(0, random_characters)
 
-def checkbox_state():
+def checkbox_state(*args): # *args allows the function to accept any number of positional arguments, which is useful because the Scale widget provides an argument to its command callback.
     scale_value = scale.get()
     selected_characters =[]
 
@@ -60,7 +60,7 @@ slider_frame.pack(pady=10, padx=10)
 slider_label = tk.Label(slider_frame, text="Password length: ")
 slider_label.pack(side=tk.LEFT, padx=(20,20))
 
-scale = tk.Scale(slider_frame, from_=5, to=40, orient="horizontal")
+scale = tk.Scale(slider_frame, from_=5, to=40, orient="horizontal", command=checkbox_state)
 scale.pack(side=tk.LEFT)
 
 # Combobox
@@ -73,9 +73,9 @@ check_vars =[]
 
 checkbox_labels = ["ABC", "abc", "123", "#$&"]
 for labels in checkbox_labels:
-    check_var = tk.IntVar()  # Cinteger variable that Tkinter can use to track the state of the checkbox.
+    check_var = tk.IntVar(value=1)  # Cinteger variable that Tkinter can use to track the state of the checkbox.
     check_vars.append(check_var)
-    check_box = tk.Checkbutton(combo_frame, text=labels, variable=check_var)
+    check_box = tk.Checkbutton(combo_frame, text=labels, variable=check_var, command=checkbox_state)
     check_box.pack(side=tk.LEFT)
 
 
