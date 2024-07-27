@@ -5,7 +5,6 @@ from tkinter import font
 
 def copy_password():
     password_value = password_show.get()
-    print(f"password is: {password_value}")
 
 # Generate random character
 def show_random_characters():
@@ -14,6 +13,23 @@ def show_random_characters():
     password_show.delete(0, tk.END)
     password_show.insert(0, random_characters)
 
+def checkbox_state():
+    scale_value = scale.get()
+    selected_characters =[]
+
+    if check_vars[0].get():
+        selected_characters.extend(string.ascii_uppercase)
+    if check_vars[1].get():
+        selected_characters.extend(string.ascii_lowercase)
+    if check_vars[2].get():
+        selected_characters.extend(string.digits)
+    if check_vars[3].get():
+        selected_characters.extend(string.punctuation)
+
+    if selected_characters:
+        random_characters = ''.join(random.choices(selected_characters, k=scale_value))
+        password_show.delete(0, tk.END)
+        password_show.insert(0, random_characters)
 # Create the main window
 root = tk.Tk()
 root.title("Password generator")
@@ -33,7 +49,7 @@ password_show = tk.Entry(frame)
 password_show.pack(side=tk.LEFT, padx=(20,20))
 
 # Copy button
-button_copy = tk.Button(frame, text="Copy", command=show_random_characters)
+button_copy = tk.Button(frame, text="Copy", command=checkbox_state)
 button_copy.pack(side=tk.LEFT)
 
 
