@@ -5,6 +5,10 @@ from tkinter import font
 
 def copy_password():
     password_value = password_show.get()
+    # Clear the clipboard and append the new value
+    root.clipboard_clear()
+    root.clipboard_append(password_value)
+    root.update()
 
 # Generate random character
 def show_random_characters():
@@ -49,7 +53,7 @@ password_show = tk.Entry(frame)
 password_show.pack(side=tk.LEFT, padx=(20,20))
 
 # Copy button
-button_copy = tk.Button(frame, text="Copy", command=checkbox_state)
+button_copy = tk.Button(frame, text="Copy", command=copy_password)
 button_copy.pack(side=tk.LEFT)
 
 
