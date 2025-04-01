@@ -21,7 +21,7 @@ def checkbox_state(*args): # *args allows the function to accept any number of p
     scale_value = scale.get()
     selected_characters =[]
 
-    if check_vars[0].get():
+    if check_vars[0].get():# extend(): Adds characters to the selected_characters list based on which checkboxes are checked.
         selected_characters.extend(string.ascii_uppercase)
     if check_vars[1].get():
         selected_characters.extend(string.ascii_lowercase)
@@ -32,13 +32,12 @@ def checkbox_state(*args): # *args allows the function to accept any number of p
 
     if selected_characters:
         random_characters = ''.join(random.choices(selected_characters, k=scale_value))
-        password_show.delete(0, tk.END)
+        password_show.delete(0, tk.END) # Clear the current entry
         password_show.insert(0, random_characters)
 # Create the main window
 root = tk.Tk()
 root.title("Password generator")
 root.geometry("400x450")
-#root.resizable(False, False)
 
 # Main Label
 custom_font = font.Font(size=12, weight="bold")
@@ -77,12 +76,10 @@ check_vars =[]
 
 checkbox_labels = ["ABC", "abc", "123", "#$&"]
 for labels in checkbox_labels:
-    check_var = tk.IntVar(value=1)  # Cinteger variable that Tkinter can use to track the state of the checkbox.
+    check_var = tk.IntVar(value=1)  # integer variable that Tkinter can use to track the state of the checkbox.
     check_vars.append(check_var)
     check_box = ttk.Checkbutton(combo_frame, text=labels, variable=check_var, command=checkbox_state)
     check_box.pack(side=tk.LEFT)
-
-
 
 show_random_characters()
 root.mainloop()
